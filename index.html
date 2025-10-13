@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Converter</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.2.0/build/styles/default.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #markdown-output {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Markdown Converter</h1>
+    <textarea id="markdown-input" rows="10" cols="50"># Hello World
+
+This is **sample** markdown.</textarea>
+    <button id="convert-btn">Convert</button>
+    <div id="markdown-output"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.2.0/build/highlight.min.js"></script>
+    <script>
+        document.getElementById('convert-btn').addEventListener('click', () => {
+            const markdownInput = document.getElementById('markdown-input').value;
+            const markdownOutput = document.getElementById('markdown-output');
+            
+            markdownOutput.innerHTML = marked.parse(markdownInput);
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+        });
+    </script>
+</body>
+
+</html>
